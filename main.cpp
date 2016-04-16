@@ -8,9 +8,9 @@ using namespace std;
 #include "utilities.h"
 
 Flight** readFlights(int *in);
-void addPassenger(Flight **in, int num);
-void writeFlights(Flight **in, int num);
-void freeFlights(Flight **in, int num);
+void addPassenger(Flight **in, const int num);
+void writeFlights(Flight **in, const int num);
+void freeFlights(Flight **in, const int num);
 
 int main(void)
 {
@@ -39,7 +39,7 @@ Flight** readFlights(int *in)
   return f;
 } //readFlights
 
-void addPassenger(Flight **in, int num)
+void addPassenger(Flight **in, const int num)
 {
   cout << "Flt# Origin               Destination\n";
 
@@ -76,7 +76,7 @@ void addPassenger(Flight **in, int num)
 }//addPassenger
 
 
-void writeFlights(Flight **in, int num)
+void writeFlights(Flight **in, const int num)
 {
   ofstream outf("reservations2.txt");
   outf << num << endl;
@@ -87,7 +87,7 @@ void writeFlights(Flight **in, int num)
   outf.close();
 }//writeFlights
 
-void freeFlights(Flight **in, int num)
+void freeFlights(Flight **in, const int num)
 {
   for(int i = 0; i < num; i++)
     delete in[i];

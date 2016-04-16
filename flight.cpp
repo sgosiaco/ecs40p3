@@ -33,7 +33,7 @@ void Flight::writeFlight(ofstream &outf)
   plane->writePlane(outf);
 }//writeFlight
 
-int Flight::getFlightNum()
+const int Flight::getFlightNum()
 {
   return flightNum;
 }//getFlightNum
