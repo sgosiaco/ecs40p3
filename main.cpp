@@ -90,5 +90,5 @@ void freeFlights(Flight **in, int num)
   for(int i = 0; i < num; i++)
     delete in[i];
 
-  free(in);
+  delete [] in;
 }//freeFlights
