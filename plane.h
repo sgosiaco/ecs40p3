@@ -16,9 +16,9 @@ class Plane
     int getRow();
     void showGrid();
   public:
+    Plane(FILE *fp);
     ~Plane();
     int addPassenger();
-    Plane(FILE *fp);
     void writePlane(FILE *fp);
 };
 

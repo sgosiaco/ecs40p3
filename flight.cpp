@@ -81,5 +81,5 @@ void writeFlight(Flight *in, FILE *fp)
 
 void freeFlight(Flight *in)
 {
-  free(in->plane);
+  delete in->plane;
 }

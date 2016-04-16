@@ -13,10 +13,10 @@ Plane::Plane(FILE *fp)
 
   for(int i = 0; i < rows; i++)
   {
-    (passengers)[i] = (char **) malloc(width * sizeof(char *));
+    passengers[i] = (char **) malloc(width * sizeof(char *));
 
     for(int k = 0; k < width; k++)
-      (passengers)[i][k] = 0;
+      passengers[i][k] = 0;
   }//for
 
   for(int k = 0; k < reserved; k++)
@@ -24,8 +24,8 @@ Plane::Plane(FILE *fp)
     fscanf(fp, "%d%c ", &row, &col);
     fgets(name, NAME_MAX, fp);
     strtok(name, "\r\n");
-    (passengers)[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
-    strcpy((passengers)[row - 1][col-'A'], name);
+    passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
+    strcpy(passengers[row - 1][col-'A'], name);
   }//for
 }//Constructor
 
@@ -35,11 +35,11 @@ Plane::~Plane()
   {
     for (int j = 0; j < width; j++)
     {
-      if ((passengers)[i][j] != 0)
-        free((passengers)[i][j]);
+      if (passengers[i][j] != 0)
+        free(passengers[i][j]);
     }//for
 
-    free((passengers)[i]);
+    free(passengers[i]);
 
   }//for
 
@@ -57,7 +57,7 @@ int Plane::addPassenger()
   {
     printf("Please enter the name of the passenger: ");
     fgets(name, NAME_MAX, stdin);
-    strtok(name, "\n\r");
+    strtok(name, "\r\n");
     showGrid();
 
     while(true)
@@ -67,13 +67,13 @@ int Plane::addPassenger()
       col = getchar() - 'A';
       getchar();
 
-      if ((passengers)[row - 1][col] == 0)
+      if (passengers[row - 1][col] == 0)
         break;
       printf("That seat is already occupied.\nPlease try again.\n");
     }//while
 
-    (passengers)[row - 1][col] = (char *) malloc(strlen(name) + 1);
-    strcpy((passengers)[row - 1][col], name);
+    passengers[row - 1][col] = (char *) malloc(strlen(name) + 1);
+    strcpy(passengers[row - 1][col], name);
     reserved++;
     return 0;
   }//else
@@ -110,8 +110,8 @@ void Plane::writePlane(FILE *fp)
   {
     for (int i = 0; i < width; i++)
     {
-      if ((passengers)[row][i] != 0)
-        fprintf(fp, "%d%c %s\n", row + 1, i + 'A', (passengers)[row][i]);
+      if (passengers[row][i] != 0)
+        fprintf(fp, "%d%c %s\n", row + 1, i + 'A', passengers[row][i]);
     }//for
   }//for
 }//writePlane
@@ -130,7 +130,7 @@ void Plane::showGrid()
 
     for(int j = 0; j < width; j++)
     {
-      if((passengers)[k][j] != 0)
+      if(passengers[k][j] != 0)
         putchar('X');
       else//seat isn't taken
         putchar('-');
