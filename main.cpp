@@ -6,6 +6,7 @@
 #include "utilities.h"
 
 void readFlights(Flight **f, int *in);
+void freeFlights(Flight *in, int num);
 
 int main(void)
 {
@@ -17,6 +18,7 @@ int main(void)
     addPassenger(flights, numFlights);
 
   writeFlights(flights, numFlights);
+  freeFlights(flights, numFlights);
   exit(EXIT_SUCCESS);
 }//main
 
@@ -31,3 +33,11 @@ void readFlights(Flight **f, int *in)
 
   fclose(fp);
 } //readFlights
+
+void freeFlights(Flight *in, int num)
+{
+  for(int i = 0; i < num; i++)
+    freeFlight(&in[i]);
+
+  free(in);
+}//freeFlights
