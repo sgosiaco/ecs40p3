@@ -28,11 +28,12 @@ int getNumber()
       flag = 0;
   }  // if first non-space is a digit
   else // first non-space is not a digit
-    return ERR; // false
+    flag = 0; // false
 
   while(c != '\n')
     c = cin.get();
-  if (flag != 0)
+
+  if (flag)
     return num;
   else
     return ERR;
