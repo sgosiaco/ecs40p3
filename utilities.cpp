@@ -8,7 +8,7 @@ using namespace std;
 
 int getNumber()
 {
-  long long num = 0;
+  long long num = 0, flag = 1;
   char c;
 
   for(c = cin.get(); isspace(c) && c != '\n'; c = cin.get());
@@ -25,15 +25,17 @@ int getNumber()
       c = cin.get();
 
     if(c != '\n' || num > INT_MAX)
-      return ERR;
+      flag = 0;
   }  // if first non-space is a digit
   else // first non-space is not a digit
     return ERR; // false
 
   while(c != '\n')
     c = cin.get();
-
-  return num;
+  if (flag != 0)
+    return num;
+  else
+    return ERR;
 }//getNumber
 
 int getChoice()
