@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 #include <fstream>
 using namespace std;
 
@@ -22,7 +22,7 @@ int main(void)
 
   writeFlights(flights, numFlights);
   freeFlights(flights, numFlights);
-  exit(EXIT_SUCCESS);
+  return 0;
 }//main
 
 Flight** readFlights(int *in)

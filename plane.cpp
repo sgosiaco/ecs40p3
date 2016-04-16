@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <iostream>
 #include <fstream>
 using namespace std;
 
@@ -59,7 +59,8 @@ int Plane::addPassenger()
   else//if there's room
   {
     printf("Please enter the name of the passenger: ");
-    fgets(name, NAME_MAX, stdin);
+    //fgets(name, NAME_MAX, stdin);
+    cin.getline(name, NAME_MAX);
     strtok(name, "\r\n");
     showGrid();
 
@@ -67,7 +68,7 @@ int Plane::addPassenger()
     {
       row = getRow();
       printf("Please enter the seat letter you wish to reserve: ");
-      col = getchar() - 'A';
+      col = cin.get() - 'A';
       getchar();
 
       if (passengers[row - 1][col] == 0)

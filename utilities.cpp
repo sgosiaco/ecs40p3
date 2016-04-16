@@ -1,33 +1,39 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
 #include <ctype.h>
 #include <string.h>
+#include <iostream>
+using namespace std;
 
 #include "utilities.h"
 
 int getNumber()
 {
-  char buf[BUF_SIZE];
-  char *line;
-  long num = 0;
-  fgets(buf, BUF_SIZE, stdin);
-  
-  if(buf[strlen(buf) - 1] == '\n' && strlen(buf) == 1)
-    return ERR;
-  
-  if(buf[strlen(buf) - 1] == '\n')
-    buf[strlen(buf) - 1] = '\0';
-  num = strtol(buf, &line, BASE);
+  long long num = 0;
+  char c;
 
-  for(int i = 0; i < (int)strlen(line); i++)
+  for(c = cin.get(); isspace(c) && c != '\n'; c = cin.get());
+
+  if(isdigit(c))
   {
-    if(isalpha(line[i]) || ispunct(line[i]) || iscntrl(line[i]))
-      num = ERR;
-  }//for
+    do
+    {
+      num = num * 10 + c - '0';
+      c = cin.get();
+    }  while(isdigit(c) && num <= INT_MAX);
 
-  if(num > INT_MAX || num < INT_MIN || num < 0)
-    return ERR;
+    while(c != '\n' && isspace(c))
+      c = cin.get();
+
+    if(c != '\n' || num > INT_MAX)
+      return ERR;
+  }  // if first non-space is a digit
+  else // first non-space is not a digit
+    return ERR; // false
+
+  while(c != '\n')
+    c = cin.get();
+
   return num;
 }//getNumber
 
