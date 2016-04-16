@@ -22,6 +22,6 @@ class Flight
     void addPassenger();
     void writeFlight(ofstream &outf);
     int getFlightNum();
-};//Flight
+}; //Flight
 
 #endif

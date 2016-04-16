@@ -20,6 +20,6 @@ class Plane
     ~Plane();
     int addPassenger();
     void writePlane(ofstream &outf);
-};//Plane
+}; //Plane
 
 #endif
