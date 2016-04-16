@@ -12,6 +12,7 @@ Plane::Plane(ifstream &inf)
   char name[NAME_MAX], col = 0;
   //fscanf(fp, "%d %d %d", &(rows), &(width), &(reserved));
   inf >> rows >> width >> reserved;
+  inf.ignore(1000, '\n');
   passengers = (char ***) malloc(rows * sizeof(char **));
 
   for(int i = 0; i < rows; i++)
@@ -27,8 +28,8 @@ Plane::Plane(ifstream &inf)
     //fscanf(fp, "%d%c ", &row, &col);
     inf >> row >> col;
     //fgets(name, NAME_MAX, fp);
-    inf >> name;
-    strtok(name, "\r\n");
+    //strtok(name, "\r\n");
+    inf.getline(name, NAME_MAX);
     passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
     strcpy(passengers[row - 1][col-'A'], name);
   }//for

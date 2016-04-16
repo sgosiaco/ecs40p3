@@ -11,10 +11,13 @@ Flight::Flight(ifstream &inf)
   //fscanf(fp, "%d", &(flightNum));
   inf >> flightNum;
   //fgets(origin, AIRPORT_MAX, fp);
+  inf.ignore(1000, '\n');
   //fgets(origin, AIRPORT_MAX, fp);
-  strtok(origin, "\r\n");
+  //strtok(origin, "\r\n");
+  inf.getline(origin, AIRPORT_MAX);
   //fgets(destination, AIRPORT_MAX, fp);
-  strtok(destination, "\r\n");
+  //strtok(destination, "\r\n");
+  inf.getline(destination, AIRPORT_MAX);
   plane = new Plane(inf);
 }//readFlight
 
