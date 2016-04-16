@@ -4,7 +4,7 @@
 
 #include "plane.h"
 
-Plane::Plane(ifstream &inf)
+Plane::Plane(FILE *fp)
 {
   int row = 0;
   char name[NAME_MAX], col = 0;
