@@ -46,14 +46,14 @@ Plane::~Plane()
     for (int j = 0; j < width; j++)
     {
       if (passengers[i][j] != 0)
-        free(passengers[i][j]);
+        delete passengers[i][j];
     }//for
 
-    free(passengers[i]);
+    delete [] passengers[i];
 
   }//for
 
-  free(passengers);
+  delete [] passengers;
 }//destructor
 
 int Plane::addPassenger()
