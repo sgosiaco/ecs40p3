@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <fstream>
+using namespace std;
 
 #include "flight.h"
 #include "plane.h"
@@ -26,15 +28,17 @@ int main(void)
 Flight** readFlights(int *in)
 {
   Flight **f;
-  FILE *fp = fopen("reservations.txt", "r");
-  fscanf(fp, "%d", in);
+  //FILE *fp = fopen("reservations.txt", "r");
+  ifstream inf("reservations.txt");
+  //fscanf(fp, "%d", in);
+  inf >> *in;
   //f = (Flight *)malloc(*in * sizeof(Flight));
   f = new Flight*[*in];
 
   for(int i = 0; i < *in; i++)
-    f[i] = new Flight(fp);
+    f[i] = new Flight(inf);
 
-  fclose(fp);
+  inf.close();
   return f;
 } //readFlights
 

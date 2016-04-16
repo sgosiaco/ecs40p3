@@ -1,7 +1,7 @@
 #ifndef FLIGHT_H
 #define FLIGHT_H
 
-#include <stdio.h>
+#include <fstream>
 #include "plane.h"
 #include "utilities.h"
 
@@ -16,7 +16,7 @@ class Flight
     char destination[AIRPORT_MAX];
     Plane *plane;
   public:
-    Flight(FILE *fp);
+    Flight(ifstream &inf);
     ~Flight();
     void printFlightInfo();
     void addPassenger();

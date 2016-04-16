@@ -1,18 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
+using namespace std;
 
 #include "flight.h"
 
-Flight::Flight(FILE *fp)
+Flight::Flight(ifstream &inf)
 {
-  fscanf(fp, "%d", &(flightNum));
-  fgets(origin, AIRPORT_MAX, fp);
-  fgets(origin, AIRPORT_MAX, fp);
+  //fscanf(fp, "%d", &(flightNum));
+  inf >> flightNum;
+  //fgets(origin, AIRPORT_MAX, fp);
+  //fgets(origin, AIRPORT_MAX, fp);
   strtok(origin, "\r\n");
-  fgets(destination, AIRPORT_MAX, fp);
+  //fgets(destination, AIRPORT_MAX, fp);
   strtok(destination, "\r\n");
-  plane = new Plane(fp);
+  plane = new Plane(inf);
 }//readFlight
 
 void Flight::addPassenger()

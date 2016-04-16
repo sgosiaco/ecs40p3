@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
+using namespace std;
 
 #include "plane.h"
 
-Plane::Plane(FILE *fp)
+Plane::Plane(ifstream &inf)
 {
   int row = 0;
   char name[NAME_MAX], col = 0;
-  fscanf(fp, "%d %d %d", &(rows), &(width), &(reserved));
+  //fscanf(fp, "%d %d %d", &(rows), &(width), &(reserved));
+  inf >> rows >> width >> reserved;
   passengers = (char ***) malloc(rows * sizeof(char **));
 
   for(int i = 0; i < rows; i++)
@@ -21,8 +24,10 @@ Plane::Plane(FILE *fp)
 
   for(int k = 0; k < reserved; k++)
   {
-    fscanf(fp, "%d%c ", &row, &col);
-    fgets(name, NAME_MAX, fp);
+    //fscanf(fp, "%d%c ", &row, &col);
+    inf >> row >> col;
+    //fgets(name, NAME_MAX, fp);
+    inf >> name;
     strtok(name, "\r\n");
     passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
     strcpy(passengers[row - 1][col-'A'], name);
