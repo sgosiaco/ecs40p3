@@ -109,16 +109,18 @@ int Plane::getRow()
   return row;
 }//getRow
 
-void Plane::writePlane(FILE *fp)
+void Plane::writePlane(ofstream &outf)
 {
-  fprintf(fp, "%d %d %d\n", rows, width, reserved);
+  //fprintf(fp, "%d %d %d\n", rows, width, reserved);
+  outf << rows << " " << width << " " << reserved << endl;
 
   for(int row = 0; row < rows; row++)
   {
     for (int i = 0; i < width; i++)
     {
       if (passengers[row][i] != 0)
-        fprintf(fp, "%d%c %s\n", row + 1, i + 'A', passengers[row][i]);
+        //fprintf(fp, "%d%c %s\n", row + 1, i + 'A', passengers[row][i]);
+        outf << row + 1 << i + 'A' << " " << passengers[row][i];
     }//for
   }//for
 }//writePlane

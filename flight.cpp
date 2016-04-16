@@ -32,10 +32,11 @@ void Flight::printFlightInfo()
   printf("%-4d %-20s %s\n", flightNum, origin, destination);
 }//printFlightInfo
 
-void Flight::writeFlight(FILE *fp)
+void Flight::writeFlight(ofstream &outf)
 {
-  fprintf(fp, "%d\n%s\n%s\n", flightNum, origin, destination);
-  plane->writePlane(fp);
+  //fprintf(fp, "%d\n%s\n%s\n", flightNum, origin, destination);
+  outf << flightNum << endl << origin << endl << destination << endl;
+  plane->writePlane(outf);
 }//writeFlight
 
 int Flight::getFlightNum()

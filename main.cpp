@@ -80,13 +80,15 @@ void addPassenger(Flight **in, int num)
 
 void writeFlights(Flight **in, int num)
 {
-  FILE *fp = fopen("reservations2.txt", "w");
-  fprintf(fp, "%d\n", num);
+  //FILE *fp = fopen("reservations2.txt", "w");
+  ofstream outf("reservations2.txt");
+  //fprintf(fp, "%d\n", num);
+  outf << num << endl;
 
   for(int i = 0; i < num; i++)
-    in[i]->writeFlight(fp);
+    in[i]->writeFlight(outf);
 
-  fclose(fp);
+  outf.close();
 }//writeFlights
 
 void freeFlights(Flight **in, int num)

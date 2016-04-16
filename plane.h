@@ -19,7 +19,7 @@ class Plane
     Plane(ifstream &inf);
     ~Plane();
     int addPassenger();
-    void writePlane(FILE *fp);
+    void writePlane(ofstream &outf);
 };
 
 #endif

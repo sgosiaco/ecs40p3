@@ -20,7 +20,7 @@ class Flight
     ~Flight();
     void printFlightInfo();
     void addPassenger();
-    void writeFlight(FILE *fp);
+    void writeFlight(ofstream &outf);
     int getFlightNum();
 };
 
