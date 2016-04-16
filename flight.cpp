@@ -4,82 +4,41 @@
 
 #include "flight.h"
 
-void readFlight(Flight *in, FILE *fp)
+Flight::Flight(FILE *fp)
 {
-  fscanf(fp, "%d", &(in->flightNum));
-  fgets(in->origin, AIRPORT_MAX, fp);
-  fgets(in->origin, AIRPORT_MAX, fp);
-  strtok(in->origin, "\n\r");
-  fgets(in->destination, AIRPORT_MAX, fp);
-  strtok(in->destination, "\n\r");
-  in->plane = (Plane *) malloc(sizeof(Plane));
-  in->plane = new Plane(fp);
+  fscanf(fp, "%d", &(flightNum));
+  fgets(origin, AIRPORT_MAX, fp);
+  fgets(origin, AIRPORT_MAX, fp);
+  strtok(origin, "\n\r");
+  fgets(destination, AIRPORT_MAX, fp);
+  strtok(destination, "\n\r");
+  plane = (Plane *) malloc(sizeof(Plane));
+  plane = new Plane(fp);
 }//readFlight
 
-void addPassenger(Flight *in, int num)
+void Flight::addPassenger()
 {
-  printf("Flt# Origin               Destination\n");
-
-  for(int i = 0; i < num; i++)
-    printFlightInfo(in + i);
-
-  while(true)
-  {
-    printf("\nFlight number (0 = exit): ");
-    int read = getNumber();
-
-    if(read <= 0)
-    {
-      if(read == ERR)
-        printf("That is an invalid flight nunber.\nPlease try again.\n");
-      else //Exit case when user enters 0
-        return;
-    }//if
-    else //Input greater than 0
-    {
-      for(int k = 0; k < num; k++)
-      {
-        if(read == (in + k)->flightNum)
-        {
-          addPassenger(in + k);
-          return;
-        }//if
-      }//for
-
-      printf("We do not have a flight number %d.\nPlease try again.\n", read);
-    }//else
-  }//while
+  if(plane->addPassenger() != 0)
+    printf("We are sorry but Flight #%d is full.\n", flightNum);
 }//addPassenger
 
-void addPassenger(Flight *in)
+void Flight::printFlightInfo()
 {
-  if(in->plane->addPassenger() != 0)
-    printf("We are sorry but Flight #%d is full.\n", in->flightNum);
-}//addPassenger
-
-void printFlightInfo(Flight *in)
-{
-  printf("%-4d %-20s %s\n", in->flightNum, in->origin, in->destination);
+  printf("%-4d %-20s %s\n", flightNum, origin, destination);
 }//printFlightInfo
 
-void writeFlights(Flight *in, int num)
+void Flight::writeFlight(FILE *fp)
 {
-  FILE *fp = fopen("reservations2.txt", "w");
-  fprintf(fp, "%d\n", num);
-
-  for(int i = 0; i < num; i++)
-    writeFlight(in + i, fp);
-
-  fclose(fp);
-}//writeFlights
-
-void writeFlight(Flight *in, FILE *fp)
-{
-  fprintf(fp, "%d\n%s\n%s\n", in->flightNum, in->origin, in->destination);
-  in->plane->writePlane(fp);
+  fprintf(fp, "%d\n%s\n%s\n", flightNum, origin, destination);
+  plane->writePlane(fp);
 }//writeFlight
 
-void freeFlight(Flight *in)
+int Flight::getFlightNum()
 {
-  delete in->plane;
+  return flightNum;
 }
+
+Flight::~Flight()
+{
+  delete plane;
+}//deconstructor
