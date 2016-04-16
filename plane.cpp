@@ -13,11 +13,13 @@ Plane::Plane(ifstream &inf)
   //fscanf(fp, "%d %d %d", &(rows), &(width), &(reserved));
   inf >> rows >> width >> reserved;
   inf.ignore(1000, '\n');
-  passengers = (char ***) malloc(rows * sizeof(char **));
+  //passengers = (char ***) malloc(rows * sizeof(char **));
+  passengers = new char**[rows];
 
   for(int i = 0; i < rows; i++)
   {
-    passengers[i] = (char **) malloc(width * sizeof(char *));
+    //passengers[i] = (char **) malloc(width * sizeof(char *));
+    passengers[i] = new char*[width];
 
     for(int k = 0; k < width; k++)
       passengers[i][k] = 0;
@@ -31,7 +33,8 @@ Plane::Plane(ifstream &inf)
     //fgets(name, NAME_MAX, fp);
     //strtok(name, "\r\n");
     inf.getline(name, NAME_MAX);
-    passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
+    //passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
+    passengers[row - 1][col-'A'] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col-'A'], name);
   }//for
 }//Constructor
@@ -79,7 +82,8 @@ int Plane::addPassenger()
       printf("That seat is already occupied.\nPlease try again.\n");
     }//while
 
-    passengers[row - 1][col] = (char *) malloc(strlen(name) + 1);
+    //passengers[row - 1][col] = (char *) malloc(strlen(name) + 1);
+    passengers[row - 1][col] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col], name);
     reserved++;
     return 0;
@@ -112,7 +116,6 @@ int Plane::getRow()
 void Plane::writePlane(ofstream &outf)
 {
   //fprintf(fp, "%d %d %d\n", rows, width, reserved);
-  char aisle = 0;
   outf << rows << " " << width << " " << reserved << endl;
 
   for(int row = 0; row < rows; row++)
@@ -121,7 +124,7 @@ void Plane::writePlane(ofstream &outf)
     {
       if (passengers[row][i] != 0)
       {
-        aisle = i + 'A';
+        char aisle = i + 'A';
         outf << row + 1 << aisle << " " << passengers[row][i] << endl;
       }
     }//for
