@@ -13,7 +13,7 @@ void readFlight(Flight *in, FILE *fp)
   fgets(in->destination, AIRPORT_MAX, fp);
   strtok(in->destination, "\n\r");
   in->plane = (Plane *) malloc(sizeof(Plane));
-  readPlane(in->plane, fp);
+  in->plane = new Plane(fp);
 }//readFlight
 
 void addPassenger(Flight *in, int num)
@@ -53,7 +53,7 @@ void addPassenger(Flight *in, int num)
 
 void addPassenger(Flight *in)
 {
-  if(addPassenger(in->plane) != 0)
+  if(in->plane->addPassenger() != 0)
     printf("We are sorry but Flight #%d is full.\n", in->flightNum);
 }//addPassenger
 
@@ -77,14 +77,13 @@ void writeFlights(Flight *in, int num)
 void writeFlight(Flight *in, FILE *fp)
 {
   fprintf(fp, "%d\n%s\n%s\n", in->flightNum, in->origin, in->destination);
-  writePlane(in->plane, fp);
+  in->plane->writePlane(fp);
 }//writeFlight
 
 void freeFlights(Flight *in, int num)
 {
   for(int i = 0; i < num; i++)
   {
-    freePlane((in + i)->plane);
     free((in + i)->plane);
   }//for
 

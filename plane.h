@@ -6,19 +6,20 @@
 
 #define NAME_MAX 80
 
-typedef struct
+class Plane
 {
-  int rows;
-  int width;
-  int reserved;
-  char ***passengers;
-} Plane;
-
-int addPassenger(Plane *in);
-int getRow(Plane *in);
-void freePlane(Plane *in);
-void readPlane(Plane *in, FILE *fp);
-void writePlane(Plane *in, FILE *fp);
-void showGrid(Plane *in);
+  private:
+    int rows;
+    int width;
+    int reserved;
+    char ***passengers;
+    int getRow();
+    void showGrid();
+  public:
+    ~Plane();
+    int addPassenger();
+    Plane(FILE *fp);
+    void writePlane(FILE *fp);
+};
 
 #endif
