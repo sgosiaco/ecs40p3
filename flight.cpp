@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <string.h>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 #include "flight.h"
@@ -18,12 +17,14 @@ Flight::Flight(ifstream &inf)
 void Flight::addPassenger()
 {
   if(plane->addPassenger() != 0)
-    printf("We are sorry but Flight #%d is full.\n", flightNum);
+    cout << "We are sorry but Flight #" << flightNum << " is full.\n";
 }//addPassenger
 
 void Flight::printFlightInfo()
 {
-  printf("%-4d %-20s %s\n", flightNum, origin, destination);
+  //printf("%-4d %-20s %s\n", flightNum, origin, destination);
+  cout << setw(4) << flightNum << setw(20) << origin << " " << destination
+       << endl;
 }//printFlightInfo
 
 void Flight::writeFlight(ofstream &outf)

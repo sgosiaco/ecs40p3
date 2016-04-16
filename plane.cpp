@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <string.h>
 #include <iostream>
 #include <fstream>
+#include <string.h>
 using namespace std;
 
 #include "plane.h"
@@ -58,8 +57,7 @@ int Plane::addPassenger()
     return 1;
   else//if there's room
   {
-    printf("Please enter the name of the passenger: ");
-    //fgets(name, NAME_MAX, stdin);
+    cout << "Please enter the name of the passenger: ";
     cin.getline(name, NAME_MAX);
     strtok(name, "\r\n");
     showGrid();
@@ -67,13 +65,13 @@ int Plane::addPassenger()
     while(true)
     {
       row = getRow();
-      printf("Please enter the seat letter you wish to reserve: ");
+      cout << "Please enter the seat letter you wish to reserve: ";
       col = cin.get() - 'A';
       getchar();
 
       if (passengers[row - 1][col] == 0)
         break;
-      printf("That seat is already occupied.\nPlease try again.\n");
+      cout << "That seat is already occupied.\nPlease try again.\n";
     }//while
 
     //passengers[row - 1][col] = (char *) malloc(strlen(name) + 1);
@@ -92,13 +90,14 @@ int Plane::getRow()
   {
     do
     {
-      printf("\nPlease enter the row of the seat you wish to reserve: ");
+      cout << "\nPlease enter the row of the seat you wish to reserve: ";
 
       if((row  = getNumber()) < 0)
-        printf("That is an invalid row number.\nPlease try again.\n");
+        cout << "That is an invalid row number.\nPlease try again.\n";
 
       if(row == 0 || (rows < row)) //Row is too large or too small
-        printf("There is no row #%d on this flight.\nPlease try again.\n", row);
+        cout << "There is no row #" << row
+             << " on this flight.\nPlease try again.\n";
 
     } while (row <= 0);
 
@@ -126,11 +125,11 @@ void Plane::writePlane(ofstream &outf)
 
 void Plane::showGrid()
 {
-  printf("ROW# ");
+  cout << "ROW# ";
 
   for(int i = 0; i < width; i++)
-    putchar(i + 'A');
-  putchar('\n');
+    cout.put(i + 'A');
+  cout.put('\n');
 
   for(int k = 0; k < rows; k++)
   {
@@ -139,13 +138,13 @@ void Plane::showGrid()
     for(int j = 0; j < width; j++)
     {
       if(passengers[k][j] != 0)
-        putchar('X');
+        cout.put('X');
       else//seat isn't taken
-        putchar('-');
+        cout.put('-');
     }//for
 
-    putchar('\n');
+    cout.put('\n');
   }//for
 
-  printf("\nX = reserved.\n");
+  cout << "\nX = reserved.\n";
 }//showGrid

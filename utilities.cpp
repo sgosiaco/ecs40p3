@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <limits.h>
 #include <ctype.h>
 #include <string.h>
@@ -40,29 +39,29 @@ int getNumber()
 int getChoice()
 {
   int in = 0;
-  printf("\nECS Flight Reservation Menu\n");
-  printf("0. Exit.\n");
-  printf("1. Add Passenger.\n");
+  cout << "\nECS Flight Reservation Menu\n";
+  cout << "0. Exit.\n";
+  cout << "1. Add Passenger.\n";
 
   do
   {
-    printf("\nPlease enter your choice: ");
+    cout << "\nPlease enter your choice: ";
     in = getNumber();
 
     if (in == ERR)
-      printf("Your choice is invalid.\nPlease try again.\n");
+      cout << "Your choice is invalid.\nPlease try again.\n";
     else//not invalid
     {
       if (in > 1)
       {
-        printf("%d is not an available choice.\n", in);
-        printf("Please try again.\n");
+        cout << in << " is not an available choice.\n";
+        cout << "Please try again.\n";
       }//if
     }//else
   } while ((in == ERR) || (in > 1));
 
   if (in == 0)
-    printf("Goodbye.\n");
+    cout << "Goodbye.\n";
 
   return in;
 } //getChoice

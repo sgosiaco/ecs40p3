@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include<iomanip>
 using namespace std;
 
 #include "flight.h"
@@ -44,20 +44,19 @@ Flight** readFlights(int *in)
 
 void addPassenger(Flight **in, int num)
 {
-  printf("Flt# Origin               Destination\n");
-
+  cout << "Flt# Origin               Destination\n";
   for(int i = 0; i < num; i++)
     in[i]->printFlightInfo();
 
   while(true)
   {
-    printf("\nFlight number (0 = exit): ");
+    cout << "\nFlight number (0 = exit): ";
     int read = getNumber();
 
     if(read <= 0)
     {
       if(read == ERR)
-        printf("That is an invalid flight nunber.\nPlease try again.\n");
+        cout << "That is an invalid flight nunber.\nPlease try again.\n";
       else //Exit case when user enters 0
         return;
     }//if
@@ -72,7 +71,8 @@ void addPassenger(Flight **in, int num)
         }//if
       }//for
 
-      printf("We do not have a flight number %d.\nPlease try again.\n", read);
+      cout << "We do not have a flight number "
+           << read <<".\nPlease try again.\n";
     }//else
   }//while
 }//addPassenger
@@ -82,7 +82,6 @@ void writeFlights(Flight **in, int num)
 {
   //FILE *fp = fopen("reservations2.txt", "w");
   ofstream outf("reservations2.txt");
-  //fprintf(fp, "%d\n", num);
   outf << num << endl;
 
   for(int i = 0; i < num; i++)
