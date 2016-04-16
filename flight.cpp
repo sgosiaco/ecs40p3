@@ -9,10 +9,9 @@ Flight::Flight(FILE *fp)
   fscanf(fp, "%d", &(flightNum));
   fgets(origin, AIRPORT_MAX, fp);
   fgets(origin, AIRPORT_MAX, fp);
-  strtok(origin, "\n\r");
+  strtok(origin, "\r\n");
   fgets(destination, AIRPORT_MAX, fp);
-  strtok(destination, "\n\r");
-  plane = (Plane *) malloc(sizeof(Plane));
+  strtok(destination, "\r\n");
   plane = new Plane(fp);
 }//readFlight
 
