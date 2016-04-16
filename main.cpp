@@ -28,11 +28,8 @@ int main(void)
 Flight** readFlights(int *in)
 {
   Flight **f;
-  //FILE *fp = fopen("reservations.txt", "r");
   ifstream inf("reservations.txt");
-  //fscanf(fp, "%d", in);
   inf >> *in;
-  //f = (Flight *)malloc(*in * sizeof(Flight));
   f = new Flight*[*in];
 
   for(int i = 0; i < *in; i++)
@@ -45,6 +42,7 @@ Flight** readFlights(int *in)
 void addPassenger(Flight **in, int num)
 {
   cout << "Flt# Origin               Destination\n";
+
   for(int i = 0; i < num; i++)
     in[i]->printFlightInfo();
 
@@ -59,7 +57,7 @@ void addPassenger(Flight **in, int num)
         cout << "That is an invalid flight nunber.\nPlease try again.\n";
       else //Exit case when user enters 0
         return;
-    }//if
+    }//if invalid input
     else //Input greater than 0
     {
       for(int k = 0; k < num; k++)
@@ -68,19 +66,18 @@ void addPassenger(Flight **in, int num)
         {
           in[k]->addPassenger();
           return;
-        }//if
-      }//for
+        }//if input matches flightNum
+      }//for num
 
       cout << "We do not have a flight number "
-           << read <<".\nPlease try again.\n";
+           << read << ".\nPlease try again.\n";
     }//else
-  }//while
+  }//while true
 }//addPassenger
 
 
 void writeFlights(Flight **in, int num)
 {
-  //FILE *fp = fopen("reservations2.txt", "w");
   ofstream outf("reservations2.txt");
   outf << num << endl;
 

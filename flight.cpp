@@ -23,7 +23,7 @@ void Flight::addPassenger()
 void Flight::printFlightInfo()
 {
   //printf("%-4d %-20s %s\n", flightNum, origin, destination);
-  cout << left << setw(4) << flightNum << " " << setw(20) << origin << " " 
+  cout << left << setw(4) << flightNum << " " << setw(20) << origin << " "
        << destination << endl;
 }//printFlightInfo
 
@@ -36,7 +36,7 @@ void Flight::writeFlight(ofstream &outf)
 int Flight::getFlightNum()
 {
   return flightNum;
-}
+}//getFlightNum
 
 Flight::~Flight()
 {

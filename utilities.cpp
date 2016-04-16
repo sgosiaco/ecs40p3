@@ -35,7 +35,7 @@ int getNumber()
 
   if (flag)
     return num;
-  else
+  else //not a number
     return ERR;
 }//getNumber
 
@@ -59,7 +59,7 @@ int getChoice()
       {
         cout << in << " is not an available choice.\n";
         cout << "Please try again.\n";
-      }//if
+      }//if in > 1
     }//else
   } while ((in == ERR) || (in > 1));
 

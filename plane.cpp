@@ -19,7 +19,7 @@ Plane::Plane(ifstream &inf)
 
     for(int k = 0; k < width; k++)
       passengers[i][k] = 0;
-  }//for
+  }//for rows
 
   for(int k = 0; k < reserved; k++)
   {
@@ -28,7 +28,7 @@ Plane::Plane(ifstream &inf)
     inf.getline(name, NAME_MAX);
     passengers[row - 1][col-'A'] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col-'A'], name);
-  }//for
+  }//for reserved
 }//Constructor
 
 Plane::~Plane()
@@ -74,7 +74,6 @@ int Plane::addPassenger()
       cout << "That seat is already occupied.\nPlease try again.\n";
     }//while
 
-    //passengers[row - 1][col] = (char *) malloc(strlen(name) + 1);
     passengers[row - 1][col] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col], name);
     reserved++;
@@ -118,9 +117,9 @@ void Plane::writePlane(ofstream &outf)
       {
         char aisle = i + 'A';
         outf << row + 1 << aisle << " " << passengers[row][i] << endl;
-      }
-    }//for
-  }//for
+      }//if passenger exists
+    }//for witdh
+  }//for row
 }//writePlane
 
 void Plane::showGrid()
@@ -141,10 +140,10 @@ void Plane::showGrid()
         cout.put('X');
       else//seat isn't taken
         cout.put('-');
-    }//for
+    }//for width
 
     cout.put('\n');
-  }//for
+  }//for row
 
   cout << "\nX = reserved.\n";
 }//showGrid
