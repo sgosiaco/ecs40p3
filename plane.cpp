@@ -10,15 +10,12 @@ Plane::Plane(ifstream &inf)
 {
   int row = 0;
   char name[NAME_MAX], col = 0;
-  //fscanf(fp, "%d %d %d", &(rows), &(width), &(reserved));
   inf >> rows >> width >> reserved;
   inf.ignore(1000, '\n');
-  //passengers = (char ***) malloc(rows * sizeof(char **));
   passengers = new char**[rows];
 
   for(int i = 0; i < rows; i++)
   {
-    //passengers[i] = (char **) malloc(width * sizeof(char *));
     passengers[i] = new char*[width];
 
     for(int k = 0; k < width; k++)
@@ -27,13 +24,9 @@ Plane::Plane(ifstream &inf)
 
   for(int k = 0; k < reserved; k++)
   {
-    //fscanf(fp, "%d%c ", &row, &col);
     inf >> row >> col;
     inf.get();
-    //fgets(name, NAME_MAX, fp);
-    //strtok(name, "\r\n");
     inf.getline(name, NAME_MAX);
-    //passengers[row - 1][col-'A'] = (char *) malloc(strlen(name) + 1);
     passengers[row - 1][col-'A'] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col-'A'], name);
   }//for
@@ -46,7 +39,7 @@ Plane::~Plane()
     for (int j = 0; j < width; j++)
     {
       if (passengers[i][j] != 0)
-        delete passengers[i][j];
+        delete [] passengers[i][j];
     }//for
 
     delete [] passengers[i];
@@ -115,7 +108,6 @@ int Plane::getRow()
 
 void Plane::writePlane(ofstream &outf)
 {
-  //fprintf(fp, "%d %d %d\n", rows, width, reserved);
   outf << rows << " " << width << " " << reserved << endl;
 
   for(int row = 0; row < rows; row++)

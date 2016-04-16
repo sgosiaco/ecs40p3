@@ -8,15 +8,9 @@ using namespace std;
 
 Flight::Flight(ifstream &inf)
 {
-  //fscanf(fp, "%d", &(flightNum));
   inf >> flightNum;
-  //fgets(origin, AIRPORT_MAX, fp);
   inf.ignore(1000, '\n');
-  //fgets(origin, AIRPORT_MAX, fp);
-  //strtok(origin, "\r\n");
   inf.getline(origin, AIRPORT_MAX);
-  //fgets(destination, AIRPORT_MAX, fp);
-  //strtok(destination, "\r\n");
   inf.getline(destination, AIRPORT_MAX);
   plane = new Plane(inf);
 }//readFlight
@@ -34,7 +28,6 @@ void Flight::printFlightInfo()
 
 void Flight::writeFlight(ofstream &outf)
 {
-  //fprintf(fp, "%d\n%s\n%s\n", flightNum, origin, destination);
   outf << flightNum << endl << origin << endl << destination << endl;
   plane->writePlane(outf);
 }//writeFlight
