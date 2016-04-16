@@ -112,6 +112,7 @@ int Plane::getRow()
 void Plane::writePlane(ofstream &outf)
 {
   //fprintf(fp, "%d %d %d\n", rows, width, reserved);
+  char aisle = 0;
   outf << rows << " " << width << " " << reserved << endl;
 
   for(int row = 0; row < rows; row++)
@@ -119,7 +120,10 @@ void Plane::writePlane(ofstream &outf)
     for (int i = 0; i < width; i++)
     {
       if (passengers[row][i] != 0)
-        outf << row + 1 << i + 'A' << " " << passengers[row][i] << endl;
+      {
+        aisle = i + 'A';
+        outf << row + 1 << aisle << " " << passengers[row][i] << endl;
+      }
     }//for
   }//for
 }//writePlane
