@@ -27,6 +27,7 @@ Plane::Plane(ifstream &inf)
   {
     //fscanf(fp, "%d%c ", &row, &col);
     inf >> row >> col;
+    inf.get();
     //fgets(name, NAME_MAX, fp);
     //strtok(name, "\r\n");
     inf.getline(name, NAME_MAX);
