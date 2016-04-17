@@ -14,13 +14,13 @@ class Plane
     int width;
     int reserved;
     char ***passengers;
-    int getRow();
-    void showGrid();
+    int getRow() const;
+    void showGrid() const;
   public:
     Plane(ifstream &inf);
     ~Plane();
     int addPassenger();
-    void writePlane(ofstream &outf);
+    void writePlane(ofstream &outf) const;
 }; //Plane
 
 #endif

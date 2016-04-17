@@ -81,7 +81,7 @@ int Plane::addPassenger()
   }//else
 }//addPassenger
 
-int Plane::getRow()
+int Plane::getRow() const
 {
   int row = 0;
 
@@ -105,7 +105,7 @@ int Plane::getRow()
   return row;
 }//getRow
 
-void Plane::writePlane(ofstream &outf)
+void Plane::writePlane(ofstream &outf) const
 {
   outf << rows << " " << width << " " << reserved << endl;
 
@@ -122,7 +122,7 @@ void Plane::writePlane(ofstream &outf)
   }//for row
 }//writePlane
 
-void Plane::showGrid()
+void Plane::showGrid() const
 {
   cout << "ROW# ";
 
