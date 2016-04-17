@@ -40,5 +40,5 @@ const int Flight::getFlightNum()
 Flight::~Flight()
 {
   delete plane;
-}//deconstructor
+}//decon
 

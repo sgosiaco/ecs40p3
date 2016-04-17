@@ -29,7 +29,7 @@ Plane::Plane(ifstream &inf)
     passengers[row - 1][col-'A'] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col-'A'], name);
   }//for reserved
-}//Constructor
+}//Cons
 
 Plane::~Plane()
 {
@@ -46,7 +46,7 @@ Plane::~Plane()
   }//for
 
   delete [] passengers;
-}//destructor
+}//decon
 
 int Plane::addPassenger()
 {
