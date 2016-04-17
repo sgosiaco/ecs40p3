@@ -20,19 +20,19 @@ void Flight::addPassenger()
     cout << "We are sorry but Flight #" << flightNum << " is full.\n";
 }//addPassenger
 
-void Flight::printFlightInfo()
+void Flight::printFlightInfo() const
 {
   cout << left << setw(4) << flightNum << " " << setw(20) << origin << " "
        << destination << endl;
 }//printFlightInfo
 
-void Flight::writeFlight(ofstream &outf)
+void Flight::writeFlight(ofstream &outf) const
 {
   outf << flightNum << endl << origin << endl << destination << endl;
   plane->writePlane(outf);
 }//writeFlight
 
-const int Flight::getFlightNum()
+const int Flight::getFlightNum() const
 {
   return flightNum;
 }//getFlightNum

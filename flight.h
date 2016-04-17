@@ -18,10 +18,10 @@ class Flight
   public:
     Flight(ifstream &inf);
     ~Flight();
-    void printFlightInfo();
+    void printFlightInfo() const;
     void addPassenger();
-    void writeFlight(ofstream &outf);
-    const int getFlightNum();
+    void writeFlight(ofstream &outf) const;
+    const int getFlightNum() const;
 }; //Flight
 
 #endif
