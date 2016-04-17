@@ -10,7 +10,7 @@ Plane::Plane(ifstream &inf)
   int row = 0;
   char name[NAME_MAX], col = 0;
   inf >> rows >> width >> reserved;
-  inf.ignore(1000, '\n');
+  inf.ignore(THOUSAND, '\n');
   passengers = new char**[rows];
 
   for(int i = 0; i < rows; i++)

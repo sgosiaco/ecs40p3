@@ -5,6 +5,7 @@
 #include "utilities.h"
 
 #define NAME_MAX 80
+#define THOUSAND 1000
 
 class Plane
 {

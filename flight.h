@@ -7,6 +7,7 @@
 
 #define AIRPORT_MAX 20
 #define ERR -1
+#define THOUSAND 1000
 
 class Flight
 {

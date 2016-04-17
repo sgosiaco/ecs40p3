@@ -8,7 +8,7 @@ using namespace std;
 Flight::Flight(ifstream &inf)
 {
   inf >> flightNum;
-  inf.ignore(1000, '\n');
+  inf.ignore(THOUSAND, '\n');
   inf.getline(origin, AIRPORT_MAX);
   inf.getline(destination, AIRPORT_MAX);
   plane = new Plane(inf);
