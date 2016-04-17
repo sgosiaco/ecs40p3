@@ -54,7 +54,7 @@ void addPassenger(Flight **in, const int num)
     if(read <= 0)
     {
       if(read == ERR)
-        cout << "That is an invalid flight nunber.\nPlease try again.\n";
+        cout << "That is an invalid flight number.\nPlease try again.\n";
       else //Exit case when user enters 0
         return;
     }//if invalid input

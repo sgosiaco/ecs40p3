@@ -118,7 +118,7 @@ void Plane::writePlane(ofstream &outf)
         char aisle = i + 'A';
         outf << row + 1 << aisle << " " << passengers[row][i] << endl;
       }//if passenger exists
-    }//for witdh
+    }//for width
   }//for row
 }//writePlane
 
