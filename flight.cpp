@@ -14,7 +14,7 @@ Flight::Flight(ifstream &inf)
   plane = new Plane(inf);
 }//readFlight
 
-void Flight::addPassenger()
+void Flight::addPassenger() const
 {
   if(plane->addPassenger() != 0)
     cout << "We are sorry but Flight #" << flightNum << " is full.\n";
@@ -41,4 +41,3 @@ Flight::~Flight()
 {
   delete plane;
 }//decon
-

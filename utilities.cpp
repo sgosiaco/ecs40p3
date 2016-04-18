@@ -6,7 +6,7 @@ using namespace std;
 
 #include "utilities.h"
 
-int getNumber()
+const int getNumber()
 {
   long long num = 0, flag = 1;
   char c;
@@ -39,7 +39,7 @@ int getNumber()
     return ERR;
 }//getNumber
 
-int getChoice()
+const int getChoice()
 {
   int in = 0;
   cout << "\nECS Flight Reservation Menu\n";
