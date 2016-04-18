@@ -76,7 +76,7 @@ void addPassenger(Flight **in, const int num)
 }//addPassenger
 
 
-void writeFlights(const Flight **in, const int num)
+void writeFlights(Flight **in, const int num)
 {
   ofstream outf("reservations2.txt");
   outf << num << endl;
