@@ -8,6 +8,7 @@ using namespace std;
 #include "utilities.h"
 
 Flight** readFlights(int *in);
+int getChoice();
 void addPassenger(Flight **in, const int num);
 void writeFlights(Flight **in, const int num);
 void freeFlights(Flight **in, const int num);
@@ -38,6 +39,36 @@ Flight** readFlights(int *in)
   inf.close();
   return f;
 } //readFlights
+
+int getChoice()
+{
+  int in = 0;
+  cout << "\nECS Flight Reservation Menu\n";
+  cout << "0. Exit.\n";
+  cout << "1. Add Passenger.\n";
+
+  do
+  {
+    cout << "\nPlease enter your choice: ";
+    in = getNumber();
+
+    if (in == ERR)
+      cout << "Your choice is invalid.\nPlease try again.\n";
+    else//not invalid
+    {
+      if (in > 1)
+      {
+        cout << in << " is not an available choice.\n";
+        cout << "Please try again.\n";
+      }//if in > 1
+    }//else
+  } while ((in == ERR) || (in > 1));
+
+  if (in == 0)
+    cout << "Goodbye.\n";
+
+  return in;
+} //getChoice
 
 void addPassenger(Flight **in, const int num)
 {

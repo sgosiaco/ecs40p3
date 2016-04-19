@@ -22,7 +22,7 @@ class Flight
     void printFlightInfo() const;
     void addPassenger() const;
     void writeFlight(ofstream &outf) const;
-    const int getFlightNum() const;
+    int getFlightNum() const;
 }; //Flight
 
 #endif

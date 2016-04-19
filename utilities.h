@@ -5,7 +5,6 @@
 #define BUF_SIZE 1024
 #define BASE 10
 
-const int getChoice();
-const int getNumber();
+int getNumber();
 
 #endif
