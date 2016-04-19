@@ -18,7 +18,9 @@ class Flight
     Plane *plane;
   public:
     Flight(ifstream &inf);
+    Flight();
     ~Flight();
+    void readFlight(ifstream &inf);
     void printFlightInfo() const;
     void addPassenger() const;
     void writeFlight(ofstream &outf) const;

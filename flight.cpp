@@ -14,6 +14,15 @@ Flight::Flight(ifstream &inf)
   plane = new Plane(inf);
 }//readFlight
 
+void Flight::readFlight(ifstream &inf)
+{
+  inf >> flightNum;
+  inf.ignore(THOUSAND, '\n');
+  inf.getline(origin, AIRPORT_MAX);
+  inf.getline(destination, AIRPORT_MAX);
+  plane = new Plane(inf);
+}//readFlight
+
 void Flight::addPassenger() const
 {
   if(plane->addPassenger() != 0)

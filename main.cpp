@@ -7,16 +7,16 @@ using namespace std;
 #include "plane.h"
 #include "utilities.h"
 
-Flight** readFlights(int *in);
+Flight* readFlights(int *in);
 int getChoice();
-void addPassenger(Flight **in, const int num);
-void writeFlights(Flight **in, const int num);
-void freeFlights(Flight **in, const int num);
+void addPassenger(Flight *in, const int num);
+void writeFlights(Flight *in, const int num);
+void freeFlights(Flight *in, const int num);
 
 int main(void)
 {
   int numFlights;
-  Flight **flights = readFlights(&numFlights);
+  Flight *flights = readFlights(&numFlights);
 
   while(getChoice() != 0)
     addPassenger(flights, numFlights);
@@ -26,15 +26,16 @@ int main(void)
   return 0;
 }//main
 
-Flight** readFlights(int *in)
+Flight* readFlights(int *in)
 {
-  Flight **f;
+  Flight *f;
   ifstream inf("reservations.txt");
   inf >> *in;
-  f = new Flight*[*in];
+  f = new Flight[*in];
+  // = new Flight(inf);
 
   for(int i = 0; i < *in; i++)
-    f[i] = new Flight(inf);
+    f[i].readFlight(inf);
 
   inf.close();
   return f;
@@ -70,12 +71,12 @@ int getChoice()
   return in;
 } //getChoice
 
-void addPassenger(Flight **in, const int num)
+void addPassenger(Flight *in, const int num)
 {
   cout << "Flt# Origin               Destination\n";
 
   for(int i = 0; i < num; i++)
-    in[i]->printFlightInfo();
+    in[i].printFlightInfo();
 
   while(true)
   {
@@ -93,9 +94,9 @@ void addPassenger(Flight **in, const int num)
     {
       for(int k = 0; k < num; k++)
       {
-        if(read == in[k]->getFlightNum())
+        if(read == in[k].getFlightNum())
         {
-          in[k]->addPassenger();
+          in[k].addPassenger();
           return;
         }//if input matches flightNum
       }//for num
@@ -107,21 +108,21 @@ void addPassenger(Flight **in, const int num)
 }//addPassenger
 
 
-void writeFlights(Flight **in, const int num)
+void writeFlights(Flight *in, const int num)
 {
   ofstream outf("reservations2.txt");
   outf << num << endl;
 
   for(int i = 0; i < num; i++)
-    in[i]->writeFlight(outf);
+    in[i].writeFlight(outf);
 
   outf.close();
 }//writeFlights
 
-void freeFlights(Flight **in, const int num)
+void freeFlights(Flight *in, const int num)
 {
   for(int i = 0; i < num; i++)
-    delete in[i];
+    //delete in[i];
 
   delete [] in;
 }//freeFlights
