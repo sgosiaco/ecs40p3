@@ -11,7 +11,7 @@ Flight* readFlights(int *in);
 int getChoice();
 void addPassenger(Flight *in, const int num);
 void writeFlights(Flight *in, const int num);
-void freeFlights(Flight *in, const int num);
+void freeFlights(Flight *in);
 
 int main(void)
 {
@@ -22,7 +22,7 @@ int main(void)
     addPassenger(flights, numFlights);
 
   writeFlights(flights, numFlights);
-  freeFlights(flights, numFlights);
+  freeFlights(flights);
   return 0;
 }//main
 
@@ -32,7 +32,6 @@ Flight* readFlights(int *in)
   ifstream inf("reservations.txt");
   inf >> *in;
   f = new Flight[*in];
-  // = new Flight(inf);
 
   for(int i = 0; i < *in; i++)
     f[i].readFlight(inf);
@@ -119,10 +118,7 @@ void writeFlights(Flight *in, const int num)
   outf.close();
 }//writeFlights
 
-void freeFlights(Flight *in, const int num)
+void freeFlights(Flight *in)
 {
-  //for(int i = 0; i < num; i++)
-    //delete &in[i];
-
   delete [] in;
 }//freeFlights
