@@ -8,7 +8,7 @@ using namespace std;
 Plane::Plane(ifstream &inf)
 {
   int row = 0;
-  char name[NAME_MAX], col = 0;
+  char name[NAME], col = 0;
   inf >> rows >> width >> reserved;
   inf.ignore(THOUSAND, '\n');
   passengers = new char**[rows];
@@ -25,7 +25,7 @@ Plane::Plane(ifstream &inf)
   {
     inf >> row >> col;
     inf.get();
-    inf.getline(name, NAME_MAX);
+    inf.getline(name, NAME);
     passengers[row - 1][col-'A'] = new char[strlen(name) + 1];
     strcpy(passengers[row - 1][col-'A'], name);
   }//for reserved
@@ -50,7 +50,7 @@ Plane::~Plane()
 
 int Plane::addPassenger()
 {
-  char name[NAME_MAX];
+  char name[NAME];
   int row = 0, col = 0;
 
   if (reserved == (rows) * (width))
@@ -58,7 +58,7 @@ int Plane::addPassenger()
   else//if there's room
   {
     cout << "Please enter the name of the passenger: ";
-    cin.getline(name, NAME_MAX);
+    cin.getline(name, NAME);
     strtok(name, "\r\n");
     showGrid();
 

@@ -2,9 +2,10 @@
 #define PLANE_H
 
 #include <fstream>
+using namespace std;
 #include "utilities.h"
 
-#define NAME_MAX 80
+#define NAME 80
 #define THOUSAND 1000
 
 class Plane
