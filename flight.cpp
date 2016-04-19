@@ -5,15 +5,6 @@ using namespace std;
 
 #include "flight.h"
 
-Flight::Flight(ifstream &inf)
-{
-  inf >> flightNum;
-  inf.ignore(THOUSAND, '\n');
-  inf.getline(origin, AIRPORT_MAX);
-  inf.getline(destination, AIRPORT_MAX);
-  plane = new Plane(inf);
-}//readFlight
-
 void Flight::readFlight(ifstream &inf)
 {
   inf >> flightNum;

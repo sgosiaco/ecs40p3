@@ -17,8 +17,6 @@ class Flight
     char destination[AIRPORT_MAX];
     Plane *plane;
   public:
-    Flight(ifstream &inf);
-    Flight();
     ~Flight();
     void readFlight(ifstream &inf);
     void printFlightInfo() const;
