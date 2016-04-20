@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <string.h>
 using namespace std;
 
 #include "plane.h"
@@ -66,7 +67,7 @@ int Plane::addPassenger()
       row = getRow();
       cout << "Please enter the seat letter you wish to reserve: ";
       col = cin.get() - 'A';
-      getchar();
+      cin.get();
 
       if (passengers[row - 1][col] == 0)
         break;
