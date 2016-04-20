@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <string.h>
+#include <cstring>
 using namespace std;
 
 #include "plane.h"

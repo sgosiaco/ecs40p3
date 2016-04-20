@@ -11,3 +11,4 @@ flight.o
 main.o
 plane.o
 utilities.o
+Info.plist
