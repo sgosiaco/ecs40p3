@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string.h>
 using namespace std;
 
@@ -132,7 +133,7 @@ void Plane::showGrid() const
 
   for(int k = 0; k < rows; k++)
   {
-    printf("%2d   ", k + 1);
+    cout << left << setw(2) << k + 1 << "   ";
 
     for(int j = 0; j < width; j++)
     {
