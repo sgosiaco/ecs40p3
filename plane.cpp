@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <string.h>
 using namespace std;
 
 #include "plane.h"
@@ -60,7 +59,6 @@ int Plane::addPassenger()
   {
     cout << "Please enter the name of the passenger: ";
     cin.getline(name, NAME);
-    strtok(name, "\r\n");
     showGrid();
 
     while(true)
