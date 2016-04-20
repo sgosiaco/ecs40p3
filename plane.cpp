@@ -133,7 +133,7 @@ void Plane::showGrid() const
 
   for(int k = 0; k < rows; k++)
   {
-    cout << left << setw(2) << k + 1 << "   ";
+    cout << right << setw(2) << k + 1 << "   ";
 
     for(int j = 0; j < width; j++)
     {
