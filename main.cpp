@@ -10,7 +10,7 @@ using namespace std;
 Flight* readFlights(int *in);
 int getChoice();
 void addPassenger(Flight *in, const int num);
-void writeFlights(Flight *in, const int num);
+void writeFlights(const Flight *in, const int num);
 void freeFlights(Flight *in);
 
 int main(void)
@@ -107,7 +107,7 @@ void addPassenger(Flight *in, const int num)
 }//addPassenger
 
 
-void writeFlights(Flight *in, const int num)
+void writeFlights(const Flight *in, const int num)
 {
   ofstream outf("reservations2.txt");
   outf << num << endl;
