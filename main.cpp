@@ -9,9 +9,9 @@ using namespace std;
 
 Flight* readFlights(int *in);
 int getChoice();
-void addPassenger(Flight *in, const int num);
+void addPassenger(const Flight *in, const int num);
 void writeFlights(const Flight *in, const int num);
-void freeFlights(Flight *in);
+void freeFlights(const Flight *in);
 
 int main(void)
 {
@@ -70,7 +70,7 @@ int getChoice()
   return in;
 } //getChoice
 
-void addPassenger(Flight *in, const int num)
+void addPassenger(const Flight *in, const int num)
 {
   cout << "Flt# Origin               Destination\n";
 
@@ -118,7 +118,7 @@ void writeFlights(const Flight *in, const int num)
   outf.close();
 }//writeFlights
 
-void freeFlights(Flight *in)
+void freeFlights(const Flight *in)
 {
   delete [] in;
 }//freeFlights
